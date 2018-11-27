@@ -1,0 +1,24 @@
+.custom-inp{
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    border: 0px;
+    background: #fb5e33;
+}
+
+.custom-size{
+    height: 40px;
+    width: 296px;
+    margin-left: 3px;
+    border-radius: 10px;
+    border: 1px solid #fb5e33;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
+

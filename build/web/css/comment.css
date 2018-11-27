@@ -1,0 +1,67 @@
+.input-comment{
+    width: 79%;
+    float: left;
+}
+
+.user-comment{
+    width: 20%;
+    float: left;
+    margin-top: 5px;
+}
+
+.add-comment{
+    width: 100%;
+    border-radius: 10px;
+    background-color: #F2F3F5;
+    border: 0px solid;;
+    height: 30px;
+}
+
+.form-comment{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-comments{
+   padding-bottom: 20px;
+}
+
+.zone-comment{
+    width: 98%;
+    font-size: 14px;
+    background-color: #E9EBEE;
+    border-radius: 10px;
+    padding: 5px 0 5px 0;
+}
+
+.username-comment{
+    color: #365899;
+    width: 18%;
+    float: left;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.content-comment{
+    width: 70%;
+    float: left;
+    text-align: left;
+}
+
+.form-edit-comment{
+    width: 70%;
+    height: 100%;
+    float: left;
+    text-align: left;
+    display: none;
+}
+
+.delete-comment{
+    width: 5%;
+    float: left;
+}
+
+.edit-comment{
+    float: left;
+}

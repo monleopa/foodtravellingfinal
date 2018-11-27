@@ -1,0 +1,258 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #E9EBEE ;		
+    font-family: 'inherit', sans-serif;
+}
+
+.header-menu ul{
+    display: inline-block;
+}
+
+.header{
+    background-color: #fb5e33;
+    width: 100%;
+    height: 3.5em;
+    position: fixed;
+}
+
+.header-logo{
+    float:left;
+    width: 20%;
+    height: 100%;
+    margin-top: 0.1em;
+}
+.header-menu{
+    float:right;
+    width: 55%;
+    height: 100%;
+}
+.header-menu ul li{
+    display:inline-block;
+}
+.header-menu ul li a{
+    display:block;
+    text-decoration:none;
+    color:#fff;
+    font-size:1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 1.2em;
+}
+.header-menu ul li a:hover{
+    color: #9fdcda;
+}
+
+.header-search{
+    float: left;
+    width: 45%;
+    height: 100%;
+}
+
+.header-content{
+    height: 100%;
+    width: 80%;
+    float: left;
+}
+
+.txtsearch{
+    height: 2.5em;
+    width: 20em;
+    border-radius: 5px;
+    border: 0px solid;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.btnsearch{
+    height: 2.5em;
+    width: 3em;
+    background-color: transparent;
+    border: 0px solid;
+    margin-top: 0;
+    position: absolute;
+    top: 10px;
+
+}
+
+.btn-logout{
+    background-color: transparent;
+    height: 30px;
+    color: #fff;
+    padding: 0 5px 0 5px;
+}
+
+.show-post:hover{
+    cursor: text;
+}
+
+.show-post{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border: 0px;
+    text-align: left;
+}
+
+.show-post2{
+    width: 40%;    
+    height: 25px;
+    background-color: #f5f6f7;
+    border: 1px solid #dddfe2;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 14px;
+}
+
+.show-post3{
+    padding: 5px 0 5px 0;
+}
+
+#showpost{
+    padding-top: 5px;
+    background-color: white;
+    width: 40%;
+    font-size: 14px;
+}
+
+.fix-post{
+    width: 45%;
+    height: 25px;
+}
+
+.text-post{
+    resize: none; 
+    width: 92%; 
+    height: 80px;
+}
+
+.fix-post2{
+    padding-bottom: 8px;
+    padding-top: 8px; 
+}
+
+.btn-post{
+    width: 40%;
+    border: 1px solid #fb5e33;
+    background-color: #fb5e33;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.btn-file{
+    width: 30%;
+}
+
+.btn-post:hover{
+    cursor: pointer;
+    background-color: #F63E0C;
+}
+
+.fix-detail-post{
+    width: 30%;
+    height: 500px;
+    float: left;
+}
+
+.detail-post{
+    width: 40%;
+    float: left;
+    height: auto;
+}
+
+.post{
+    width: 100%;
+    height: auto;
+}
+
+.container-follow{
+    width: 100%;
+    height: 120px;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.follow{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.name-follow{
+    width: 100%;
+}
+
+.following{
+    width: 100%;
+    font-size: 15px;
+}
+
+.fix-follow{
+    width: 25%;
+    height: 100%;
+    float: left;
+    
+}
+
+.avatar-follow-img{
+    width: 100px;
+    height: 100px;
+    border: 3px solid white;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    background-color: white;
+}
+
+.fix-avatar-follow-img{
+    width: 10%;
+    height: 100%;
+    float: left;
+}
+
+.btn-follow{
+    width: 100%;
+    padding: 15px;
+    border: 0px;
+}
+
+.btn-follow{
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ccd0d5;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.btn-follow:hover{
+    background-color: #F4F4F4;
+}
+
+.btn-follow:active{
+    background-color: #E1E1E1;
+}
+
+.fix-follow2{
+    width: 30%;
+    height: 30%;
+    float: left;
+    margin-top: 30px;
+}
+
+.follow-button{
+    width: 10%;
+    height: 30%;
+    float: left;
+    margin-top: 30px;
+}
+
+.img-circle {
+    border-radius: 50%;
+}

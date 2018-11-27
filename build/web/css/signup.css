@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.signup-area{
+    width: 100%;
+}
+
+.signup-infor{
+    width: 40%;
+    float: left;
+    height: 100%;
+    text-align: right;
+}
+
+.signup-form{
+    width: 60%;
+    height: 100%;
+    float: right;
+}
+
+.custom-inp{
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    border: 0px;
+    background: #fb5e33;
+}
+
+.custom-size{
+    height: 40px;
+    width: 296px;
+    margin-left: 3px;
+    border-radius: 10px;
+    border: 1px solid #fb5e33;
+}
