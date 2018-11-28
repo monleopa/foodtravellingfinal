@@ -3,11 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Desktop/foodtravelling-master/web/index.jsp</file>
-            <file>file:/C:/Users/User/Desktop/foodtravelling-master/web/ListPostUpload.jsp</file>
-            <file>file:/C:/Users/User/Desktop/foodtravelling-master/web/FoodPost.jsp</file>
-            <file>file:/C:/Users/User/Desktop/foodtravelling-master/web/TravellingPost.jsp</file>
-            <file>file:/C:/Users/User/Desktop/foodtravelling-master/src/java/DAO/PostDao.java</file>
+            <file>file:/C:/Users/User/Desktop/TravellingFood/src/java/controller/PostServlet.java</file>
         </group>
     </open-files>
 </project-private>

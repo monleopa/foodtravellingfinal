@@ -256,6 +256,28 @@ public class UserDao {
         }
         return "0";
     }
+    
+    public static User getUserByEmail(String email){
+        Connection con = JDBCConnection.getJDBCConnection();
+        String sql = "SELECT * FROM user WHERE email = '"+email+"'";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            User user = new User();
+            while(rs.next()){
+                user.setUserID(rs.getLong("user_id"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("user_name"));
+                user.setPassword(rs.getString("user_password"));
+                user.setAdmin(rs.getLong("admin"));
+            }
+            return user;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 //    
 //    public static User getUserMax(){
 //        try {

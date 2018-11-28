@@ -59,10 +59,11 @@ public class PostServlet extends HttpServlet {
             RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
             rq.forward(request, response);
         }
-        String savePath = "C:\\Users\\User\\Desktop\\foodtravelling-master\\build\\web\\PostImages" + File.separator + fileName;
-        File fileSave = new File(savePath);
+        String savePath = "C:\\Users\\User\\Desktop\\TravellingFood\\build\\web\\PostImages" + File.separator + fileName;
         
-        System.out.println("clgt "+fileSave.getUsableSpace());
+//        String savePath = "/PostImages" + File.separator + fileName;
+        System.out.println("Working Directory = " +System.getProperty("user.dir"));
+        File fileSave = new File(savePath);
         
         part.write(savePath + File.separator);
         HttpSession session =  request.getSession();

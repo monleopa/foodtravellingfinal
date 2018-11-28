@@ -75,6 +75,7 @@
             document.getElementById(btnFollow).value = 1;
             var http = new XMLHttpRequest();
             http.open("POST", "http://localhost:8080/TravellingFood/follow.jsp", true);
+ //           http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/follow.jsp", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             var params = "param2=" + a;
             http.send(params);
@@ -87,6 +88,7 @@
             document.getElementById(btnFollow).value = 0;
             var http = new XMLHttpRequest();
             http.open("POST", "http://localhost:8080/TravellingFood/unfollow.jsp", true);
+      //      http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/unfollow.jsp", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             var params = "param2=" + a;
             http.send(params);

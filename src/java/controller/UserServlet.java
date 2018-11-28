@@ -54,14 +54,14 @@ public class UserServlet extends HttpServlet {
                 String cfpassword = request.getParameter("copass");
                 User getUser = new User();
                 if (email.equals("") || email == null) {
-                    request.setAttribute("error", "Email không được để null");
+                    request.setAttribute("error", "Email not null");
                     request.setAttribute("uname", uname);
 
                     RequestDispatcher rq = request.getRequestDispatcher(url);
                     rq.forward(request, response);
                 }
                 if (!matcher.matches()) {
-                    request.setAttribute("error", "Email không đúng biểu mẫu");
+                    request.setAttribute("error", "Email not right form");
                     request.setAttribute("uname", uname);
 
                     RequestDispatcher rq = request.getRequestDispatcher(url);
@@ -69,7 +69,7 @@ public class UserServlet extends HttpServlet {
                 }
 
                 if (uname.equals("") || uname == null) {
-                    request.setAttribute("error", "UserName không được để null");
+                    request.setAttribute("error", "UserName not null");
                     request.setAttribute("email", email);
                     RequestDispatcher rq = request.getRequestDispatcher(url);
                     rq.forward(request, response);
@@ -77,14 +77,14 @@ public class UserServlet extends HttpServlet {
                 Pattern regexUname = Pattern.compile("[$&+,:;=?@#|'<>.-^*()%!]");
                 Matcher matcherUname = regexUname.matcher(uname);
                 if (matcherUname.find()) {
-                    request.setAttribute("error", "Username không được chứa ký tự đặc biệt ");
+                    request.setAttribute("error", "Username don't have special character ");
                     request.setAttribute("uname", uname);
 
                     RequestDispatcher rq = request.getRequestDispatcher(url);
                     rq.forward(request, response);
                 }
                 if (password.equals("") || password == null) {
-                    request.setAttribute("error", "Pass không được để null");
+                    request.setAttribute("error", "Pass not null");
                     request.setAttribute("email", email);
                     request.setAttribute("uname", uname);
                     RequestDispatcher rq = request.getRequestDispatcher(url);
@@ -103,7 +103,7 @@ public class UserServlet extends HttpServlet {
                     String pass = MD5.encryption(request.getParameter("pass"));
                     boolean checkemail = userDao.checkEmail(email);
                     if (checkemail == true) {
-                        request.setAttribute("error", "Email đã tồn tại");
+                        request.setAttribute("error", "Email existed");
                         request.setAttribute("email", email);
                         request.setAttribute("uname", uname);
                         RequestDispatcher rq = request.getRequestDispatcher(url);
@@ -114,7 +114,13 @@ public class UserServlet extends HttpServlet {
                         user.setPassword(pass);
                         user.setAdmin(2);
                         if(userDao.inseartUser(user) == true){
-                            session.setAttribute("user", user);
+                            User u = UserDao.getUserByEmail(user.getEmail());
+                            try {
+                                UserDao.follow(u.getUserID(), String.valueOf(u.getUserID()) );
+                            } catch (SQLException ex) {
+                                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            session.setAttribute("user", u);
                         }
                         response.sendRedirect("index.jsp");
                         break;
