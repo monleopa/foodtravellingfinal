@@ -23,6 +23,7 @@
             User user2 = new User();
             String postUserId = request.getParameter("userID");
             user2 = UserDao.getUser(postUserId);
+            if(user2 != null){
         %>
         <br><br><br><br>
         <div class="container-follow">
@@ -56,9 +57,14 @@
             <div class="fix-detail-post"></div>
         </div>
             
-        <% } else {%>
-            <jsp:include page="signup.jsp"></jsp:include>
-        <% } %>
+        <%
+        } else { %> 
+        <br><br><br><br>
+        <center><h1>This user not exist</h1></center>
+        <% }
+        } else { %>        
+        <jsp:include page="signup.jsp"></jsp:include>
+        <% }%>
     </body>
 </html>
 
@@ -74,8 +80,8 @@
             document.getElementById(btnFollow).innerHTML = "Unfollow";
             document.getElementById(btnFollow).value = 1;
             var http = new XMLHttpRequest();
-            http.open("POST", "http://localhost:8080/TravellingFood/follow.jsp", true);
- //           http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/follow.jsp", true);
+  //          http.open("POST", "http://localhost:8080/TravellingFood/follow.jsp", true);
+            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/follow.jsp", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             var params = "param2=" + a;
             http.send(params);
@@ -87,8 +93,8 @@
             document.getElementById(btnFollow).innerHTML = "Follow";
             document.getElementById(btnFollow).value = 0;
             var http = new XMLHttpRequest();
-            http.open("POST", "http://localhost:8080/TravellingFood/unfollow.jsp", true);
-      //      http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/unfollow.jsp", true);
+ //           http.open("POST", "http://localhost:8080/TravellingFood/unfollow.jsp", true);
+            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/unfollow.jsp", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             var params = "param2=" + a;
             http.send(params);

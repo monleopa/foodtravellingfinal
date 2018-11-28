@@ -19,15 +19,15 @@ public class JDBCConnection {
     
     public static Connection getJDBCConnection()
     {
-        final String url = "jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8";
-        final String user = "root";
-        final String password = "";
-        
-//        final String host = "node194333-travellingfood.jelastic.servint.net";
-//        final String db = "demo";
-//        final String url = "jdbc:mysql://"+host+"/"+db+"?useUnicode=true&characterEncoding=utf-8";
+//        final String url = "jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8";
 //        final String user = "root";
-//        final String password = "FMYifp16841";
+//        final String password = "";
+        
+        final String host = "node194333-travellingfood.jelastic.servint.net";
+        final String db = "demo";
+        final String url = "jdbc:mysql://"+host+"/"+db+"?useUnicode=true&characterEncoding=utf-8";
+        final String user = "root";
+        final String password = "FMYifp16841";
         
         
         try {

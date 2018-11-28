@@ -31,6 +31,8 @@
                     postID = request.getParameter("postID");
                     p = PostDao.getPost(postID);
                 }
+
+                if (p != null) {
         %>
         <br><br><br><br>
         <div class="post">
@@ -167,30 +169,30 @@
                             <div class="username-comment">
                                 <b><%= cmt.getUserCommentName()%></b>
                             </div>
-                            <div class="content-comment" id="<%= "comment"+cmt.getCommentID() %>">
+                            <div class="content-comment" id="<%= "comment" + cmt.getCommentID()%>">
                                 <%= cmt.getCommentContent()%>
                             </div>
-                            <% if( user.getUserID() == cmt.getUserCommentID() || user.getAdmin() == 1 ) { %>
-                                <div class="form-edit-comment" id="<%= "formComment"+cmt.getCommentID() %>">
-                                    <form action="EditCommentServlet" method="POST" id="<%= "editCMT"+cmt.getCommentID() %>">
-                                        <input type="text" name="editContent" value="<%= cmt.getCommentContent()%>" style="width: 80%; height: <%=h3%>px;">
-                                        <input type="hidden" name="commentID"  value="<%= cmt.getCommentID()%>">
-                                        <input type="hidden" value="<%=p.getPostID()%>" name="postID">
-                                        <button type="button" onclick="closeEditCMT(<%= cmt.getCommentID() %>)">close</button>
-                                    </form>
-                                </div>
-                                <div class="delete-comment">
-                                    <form action="DeleteCommentServlet" method="POST" id="<%="deleteComment" + cmt.getCommentID()%>">
-                                        <input type="hidden" name="commentDelete"  value="<%= cmt.getCommentID()%>">
-                                        <input type="hidden" value="<%=p.getPostID()%>" name="postID">
-                                        <button type="submit" style="background-color: transparent; border: none;"><img src="img/delete.png" width="15px" height="15px"></button>
-                                    </form>
-                                </div>
-                                <div class="edit-comment">
-                                    <button id="<%="editCMT"+cmt.getCommentID()%>" onclick="showEditComment(<%=cmt.getCommentID()%>)" style="background-color: transparent; border: none;">
-                                        <img src="img/pencil.svg" width="15px" height="15px">
-                                    </button>
-                                </div>  
+                            <% if (user.getUserID() == cmt.getUserCommentID() || user.getAdmin() == 1) {%>
+                            <div class="form-edit-comment" id="<%= "formComment" + cmt.getCommentID()%>">
+                                <form action="EditCommentServlet" method="POST" id="<%= "editCMT" + cmt.getCommentID()%>">
+                                    <input type="text" name="editContent" value="<%= cmt.getCommentContent()%>" style="width: 80%; height: <%=h3%>px;">
+                                    <input type="hidden" name="commentID"  value="<%= cmt.getCommentID()%>">
+                                    <input type="hidden" value="<%=p.getPostID()%>" name="postID">
+                                    <button type="button" onclick="closeEditCMT(<%= cmt.getCommentID()%>)">close</button>
+                                </form>
+                            </div>
+                            <div class="delete-comment">
+                                <form action="DeleteCommentServlet" method="POST" id="<%="deleteComment" + cmt.getCommentID()%>">
+                                    <input type="hidden" name="commentDelete"  value="<%= cmt.getCommentID()%>">
+                                    <input type="hidden" value="<%=p.getPostID()%>" name="postID">
+                                    <button type="submit" style="background-color: transparent; border: none;"><img src="img/delete.png" width="15px" height="15px"></button>
+                                </form>
+                            </div>
+                            <div class="edit-comment">
+                                <button id="<%="editCMT" + cmt.getCommentID()%>" onclick="showEditComment(<%=cmt.getCommentID()%>)" style="background-color: transparent; border: none;">
+                                    <img src="img/pencil.svg" width="15px" height="15px">
+                                </button>
+                            </div>  
                             <% } %>
                         </div>
                     </center> <br>
@@ -213,8 +215,11 @@
             <div class="fix-detail-post"></div>
         </div>
         <%
-        } else {
-        %>        
+        } else { %> 
+        <br><br><br><br>
+        <center><h1>This post not exist</h1></center>
+        <% }
+        } else { %>        
         <jsp:include page="signup.jsp"></jsp:include>
         <% }%>
     </body>
@@ -230,8 +235,8 @@
             document.getElementById(imgLike).style.backgroundColor = "#fb5e33";
             document.getElementById(btnLike).value = 1;
             var http = new XMLHttpRequest();
-            http.open("POST", "http://localhost:8080/TravellingFood/sublike.jsp", true);
-//            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/sublike.jsp", true);
+  //          http.open("POST", "http://localhost:8080/TravellingFood/sublike.jsp", true);
+            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/sublike.jsp", true);
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             var params = "param1=" + a;
             http.send(params);
@@ -241,15 +246,15 @@
             document.getElementById(imgLike).style.backgroundColor = "white";
             document.getElementById(btnLike).value = 0;
             var http = new XMLHttpRequest();
-            http.open("POST", "http://localhost:8080/TravellingFood/dislike.jsp", true);
-//            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/dislike.jsp", true);
+ //           http.open("POST", "http://localhost:8080/TravellingFood/dislike.jsp", true);
+            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/dislike.jsp", true);
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             var params = "param1=" + a;
             http.send(params);
             http.onload;
         }
     }
-
+    
     function openReport(a) {
         var btnRP = "btnRP" + a;
         document.getElementById(btnRP).style.display = "block";
@@ -277,17 +282,17 @@
         document.getElementById(nalo).style.display = "block";
         document.getElementById(content).style.display = "block";
     }
-    
-    function showEditComment(a){
-        var btnEdit = "formComment"+a;
-        var btnComment = "comment"+a;
+
+    function showEditComment(a) {
+        var btnEdit = "formComment" + a;
+        var btnComment = "comment" + a;
         document.getElementById(btnEdit).style.display = "block";
         document.getElementById(btnComment).style.display = "none";
     }
-    
-    function closeEditCMT(a){
-        var btnEdit = "formComment"+a;
-        var btnComment = "comment"+a;
+
+    function closeEditCMT(a) {
+        var btnEdit = "formComment" + a;
+        var btnComment = "comment" + a;
         document.getElementById(btnEdit).style.display = "none";
         document.getElementById(btnComment).style.display = "block";
     }

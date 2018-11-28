@@ -83,12 +83,13 @@ public class PostDao {
 
     public static Post getPost(String postID) {
         try {
+            System.out.println(postID);
             Connection con = JDBCConnection.getJDBCConnection();
             String sql = "SELECT * FROM post WHERE post_id = '" + postID + "'";
             PreparedStatement ps = con.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             Post post = new Post();
-            while (rs.next()) {
+            if(rs.next()) {
                 post.setPostID(rs.getLong("post_id"));
                 post.setPostName(rs.getString("post_name"));
                 post.setPostLocation(rs.getString("post_location"));
@@ -98,13 +99,12 @@ public class PostDao {
                 post.setPostCategory(rs.getLong("post_category"));
                 post.setPostUserName(rs.getString("user_name"));
                 post.setPostUserId(rs.getLong("user_id"));
+                con.close();
+                return post;
             }
-            con.close();
-            return post;
         } catch (SQLException ex) {
             Logger.getLogger(PostDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return null;
     }
     
