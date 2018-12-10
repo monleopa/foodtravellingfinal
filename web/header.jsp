@@ -23,7 +23,7 @@
             %>    
                 <div class="header-content">
                     <div class="header-search">
-                        <form action="action">
+                        <form action="SearchServlet" method="GET">
                             <input type="text" name="searchname" class="txtsearch" placeholder=" Search">
                             <button type="submit" class="btnsearch"><img src="img/search.png" with="25px" height="25px"></button>
                         </form>
@@ -40,8 +40,8 @@
                             <li><a href="home.jsp?userID=<%=user.getUserID()%>" style="text-transform: uppercase;"><b><%= user.getUsername() %></b></a></li>
                             <li><a href="FoodPost.jsp" value="1" name="food"><b>FOOD</b></a></li>
                             <li><a href="TravellingPost.jsp" value="2" name="travelling"><b>TRAVELLING</b> </a></li>
-                            <li><a href="<%=ttcnUrl%>" style=" padding-left: 5px;padding-right: 20px;"><b>PROFILE</b></a></li>
-<!--                            <img src="PostImages/<%=user.getAvata_name()%>" class="img-circle" width="17px;" alt="ttcn">-->
+<!--                            <li><a href="<%=ttcnUrl%>" style=" padding-left: 5px;padding-right: 20px;"><b>PROFILE</b></a></li>
+                            <img src="PostImages/<%=user.getAvata_name()%>" class="img-circle" width="17px;" alt="ttcn">-->
                             <li>
                                 <form action="UserServlet" method="post">
                                     <input type="hidden" value="logout" name="command">

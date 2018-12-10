@@ -25,8 +25,8 @@ public class CommentDao {
 
     public static boolean AddComment(Comment cmt) {
         Connection con = JDBCConnection.getJDBCConnection();
-        String sql = "insert into comment(comment_content,comment_post_id,comment_user_id,comment_user_name)"
-                + " values(?,?,?,?)";
+        String sql = "insert into comment(comment_content,comment_post_id,comment_user_id)"
+                + " values(?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, cmt.getCommentContent());
@@ -44,7 +44,7 @@ public class CommentDao {
 
     public static ArrayList<Comment> getListComment(long postID) throws SQLException {
         Connection con = JDBCConnection.getJDBCConnection();
-        String sql = "SELECT * FROM comment WHERE comment_post_id = '" + postID + "'";
+        String sql = "SELECT * FROM comment, user WHERE comment_post_id = '" + postID + "' AND comment_user_id = user_id";
         PreparedStatement ps = con.prepareCall(sql);
         ResultSet rs = ps.executeQuery();
         ArrayList<Comment> listComment = new ArrayList<>();
@@ -54,7 +54,7 @@ public class CommentDao {
             cmt.setCommentContent(rs.getString("comment_content"));
             cmt.setPostID(rs.getLong("comment_post_id"));
             cmt.setUserCommentID(rs.getLong("comment_user_id"));
-            cmt.setUserCommentName(rs.getString("comment_user_name"));
+            cmt.setUserCommentName(rs.getString("user_name"));
             listComment.add(cmt);
         }
         con.close();

@@ -21,6 +21,11 @@ public class User {
         this.avata = avata;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "userID=" + userID + ", email=" + email + ", username=" + username + ", password=" + password + ", avata=" + avata + ", avata_name=" + avata_name + ", admin=" + admin + '}';
+    }
+
     public String getAvata_name() {
         return avata_name;
     }

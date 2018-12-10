@@ -25,8 +25,8 @@ public class PostDao {
 
     public static boolean UploadPost(Post post) {
         Connection con = JDBCConnection.getJDBCConnection();
-        String sql = "insert into post(post_name,post_location,post_filename,post_content,post_image,post_category,user_id,user_name)"
-                + " values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into post(post_name,post_location,post_filename,post_content,post_image,post_category,user_id)"
+                + " values(?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -50,15 +50,15 @@ public class PostDao {
         Connection con = JDBCConnection.getJDBCConnection();
         String sql = null;
         if (category.equalsIgnoreCase("full")) {
-            sql = "SELECT * FROM post ORDER BY post_id DESC";
+            sql = "SELECT * FROM post, user WHERE post.user_id = user.user_id ORDER BY post_id DESC";
         } else if (category.equalsIgnoreCase("food")) {
-            sql = "SELECT * FROM post WHERE post_category = 1 ORDER BY post_id DESC";
+            sql = "SELECT * FROM post, user WHERE post_category = 1 AND post.user_id = user.user_id ORDER BY post_id DESC";
         } else if (category.equalsIgnoreCase("travelling")) {
-            sql = "SELECT * FROM post WHERE post_category = 2 ORDER BY post_id DESC";
+            sql = "SELECT * FROM post, user WHERE post_category = 2 AND post.user_id = user.user_id ORDER BY post_id DESC";
         } else if (category.equalsIgnoreCase("follow")) {
-            sql = "SELECT * FROM post, relationship WHERE follower_id = '"+ userID +"' AND following_id = user_id ORDER BY post_id DESC";
+            sql = "SELECT * FROM post, relationship, user WHERE follower_id = '"+ userID +"' AND following_id = post.user_id AND post.user_id = user.user_id ORDER BY post_id DESC";
         } else {
-            sql = "SELECT * FROM post WHERE user_id = " + category + " ORDER BY post_id DESC";
+            sql = "SELECT * FROM post, user WHERE post.user_id = " + category + " AND post.user_id = user.user_id ORDER BY post_id DESC";
         }
 
         PreparedStatement ps = con.prepareCall(sql);
@@ -74,7 +74,7 @@ public class PostDao {
             post.setPostImage(rs.getString("post_image"));
             post.setPostCategory(rs.getLong("post_category"));
             post.setPostUserName(rs.getString("user_name"));
-            post.setPostUserId(rs.getLong("user_id"));
+            post.setPostUserId(rs.getLong("post.user_id"));
             list.add(post);
         }
         con.close();
@@ -85,7 +85,7 @@ public class PostDao {
         try {
             System.out.println(postID);
             Connection con = JDBCConnection.getJDBCConnection();
-            String sql = "SELECT * FROM post WHERE post_id = '" + postID + "'";
+            String sql = "SELECT * FROM post, user WHERE post_id = '" + postID + "' AND post.user_id = user.user_id";
             PreparedStatement ps = con.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             Post post = new Post();
@@ -97,7 +97,7 @@ public class PostDao {
                 post.setPostFileName(rs.getString("post_filename"));
                 post.setPostImage(rs.getString("post_image"));
                 post.setPostCategory(rs.getLong("post_category"));
-                post.setPostUserName(rs.getString("user_name"));
+                post.setPostUserName(rs.getString("user.user_name"));
                 post.setPostUserId(rs.getLong("user_id"));
                 con.close();
                 return post;
@@ -228,5 +228,62 @@ public class PostDao {
         }
 
         return false;
+    }
+    
+    public static ArrayList<Post> searchFood(String name){
+        Connection con = JDBCConnection.getJDBCConnection();
+        ArrayList<Post> list = new ArrayList<>();
+        String sql;
+        sql = "SELECT * FROM post, user WHERE post.user_id = user.user_id AND post_category = 1 AND (post_name LIKE '%"+name+"%' OR post_location LIKE '%"+name+"%')";
+        try {
+            PreparedStatement ps = con.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Post post = new Post();
+                post.setPostID(rs.getLong("post_id"));
+                post.setPostName(rs.getString("post_name"));
+                post.setPostLocation(rs.getString("post_location"));
+                post.setPostContent(rs.getString("post_content"));
+                post.setPostFileName(rs.getString("post_filename"));
+                post.setPostImage(rs.getString("post_image"));
+                post.setPostCategory(rs.getLong("post_category"));
+                post.setPostUserName(rs.getString("user.user_name"));
+                post.setPostUserId(rs.getLong("user_id"));
+                list.add(post);
+            }
+            con.close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static ArrayList<Post> searchTravel(String name){
+        Connection con = JDBCConnection.getJDBCConnection();
+        ArrayList<Post> list = new ArrayList<>();
+        String sql = "SELECT * FROM post, user WHERE post.user_id = user.user_id AND post_category = 2 AND (post_name LIKE '%"+name+"%' OR post_location LIKE '%"+name+"%')";
+        try {
+            PreparedStatement ps = con.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Post post = new Post();
+                post.setPostID(rs.getLong("post_id"));
+                post.setPostName(rs.getString("post_name"));
+                post.setPostLocation(rs.getString("post_location"));
+                post.setPostContent(rs.getString("post_content"));
+                post.setPostFileName(rs.getString("post_filename"));
+                post.setPostImage(rs.getString("post_image"));
+                post.setPostCategory(rs.getLong("post_category"));
+                post.setPostUserName(rs.getString("user.user_name"));
+                post.setPostUserId(rs.getLong("user_id"));
+                list.add(post);
+            }
+            con.close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 } 

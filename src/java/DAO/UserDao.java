@@ -65,7 +65,7 @@ public class UserDao {
         Connection con = JDBCConnection.getJDBCConnection();
         PreparedStatement ps = null;
         try {
-            String sql = "update user set email=?, user_name=? where user_id=?;";
+            String sql = "update user set email=?, user_name=? where user_id=?";
             ps = con.prepareStatement(sql);
             ps.setString(1, u.getEmail());
             ps.setString(2, u.getUsername());
@@ -238,6 +238,7 @@ public class UserDao {
         }
         return "0";
     }
+    
     public static String countFollowing(long postID){
         Connection con = JDBCConnection.getJDBCConnection();
         String sql = "SELECT COUNT(*) FROM relationship WHERE following_id = '"+postID+"'";
@@ -265,7 +266,7 @@ public class UserDao {
             ps = con.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             User user = new User();
-            while(rs.next()){
+            if(rs.next()){
                 user.setUserID(rs.getLong("user_id"));
                 user.setEmail(rs.getString("email"));
                 user.setUsername(rs.getString("user_name"));
@@ -275,6 +276,30 @@ public class UserDao {
             return user;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public static ArrayList<User> searchUser(String name){
+        Connection con = JDBCConnection.getJDBCConnection();
+        ArrayList<User> list = new ArrayList<>();
+        String sql = "SELECT * FROM user WHERE user_name LIKE '%" + name + "%' OR email LIKE '%" + name + "%'";
+        try {
+            PreparedStatement ps = con.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                User user = new User();
+                user.setUserID(rs.getLong("user_id"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("user_name"));
+                user.setPassword(rs.getString("user_password"));
+                user.setAdmin(rs.getLong("admin"));
+                list.add(user);
+            }
+            con.close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

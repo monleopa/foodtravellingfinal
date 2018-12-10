@@ -26,12 +26,10 @@
                 user = (User) session.getAttribute("user");
                 Post p = new Post();
                 String postID = "";
-
                 if (request.getParameter("postID") != null) {
                     postID = request.getParameter("postID");
                     p = PostDao.getPost(postID);
                 }
-
                 if (p != null) {
         %>
         <br><br><br><br>
@@ -235,8 +233,8 @@
             document.getElementById(imgLike).style.backgroundColor = "#fb5e33";
             document.getElementById(btnLike).value = 1;
             var http = new XMLHttpRequest();
-  //          http.open("POST", "http://localhost:8080/TravellingFood/sublike.jsp", true);
-            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/sublike.jsp", true);
+            http.open("POST", "http://localhost:8080/TravellingFood/sublike.jsp", true);
+ //           http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/sublike.jsp", true);
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             var params = "param1=" + a;
             http.send(params);
@@ -246,8 +244,8 @@
             document.getElementById(imgLike).style.backgroundColor = "white";
             document.getElementById(btnLike).value = 0;
             var http = new XMLHttpRequest();
- //           http.open("POST", "http://localhost:8080/TravellingFood/dislike.jsp", true);
-            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/dislike.jsp", true);
+            http.open("POST", "http://localhost:8080/TravellingFood/dislike.jsp", true);
+//            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/dislike.jsp", true);
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             var params = "param1=" + a;
             http.send(params);

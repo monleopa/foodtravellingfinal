@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="DAO.UserDao"%>
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,7 +53,12 @@
         </center>
         
         <br><br> 
-        
+        <% if(UserDao.countFollower(user.getUserID()).equals("1")){ %>
+            <center>
+                <h1>You don't follow anyone, Let follow to see their Post</h1>
+                <h1>CLick on Food or Travelling to see new Post</h1>
+            </center>
+        <% } else { %>
         <div class="post">
             <div class="fix-detail-post"></div>
             <div class="detail-post">
@@ -61,7 +67,7 @@
             <div class="fix-detail-post"></div>
         </div>
           
-        <% } %>
+        <% } } %>
         
     </body>
 </html>

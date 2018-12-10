@@ -98,4 +98,11 @@ public class Post {
 
     public Post() {
     }
+
+    @Override
+    public String toString() {
+        return "Post{" + "postName=" + postName + ", postLocation=" + postLocation + ", postContent=" + postContent + ", postImage=" + postImage + ", postFileName=" + postFileName + ", postUserName=" + postUserName + ", postUserId=" + postUserId + ", postID=" + postID + ", postCategory=" + postCategory + '}';
+    }
+    
+    
 }

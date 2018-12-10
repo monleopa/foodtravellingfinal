@@ -40,9 +40,12 @@ public class PostServlet extends HttpServlet {
         String postName = request.getParameter("postname");
         String postLocation = request.getParameter("location");
         String postContent = request.getParameter("content");    
-        
         String category = request.getParameter("category");
         
+        
+        String saveReal = request.getServletContext().getRealPath("");
+//        System.out.println(saveReal);
+                
         long postCategory = 2;
         if(category == null){
             postCategory = 1;
@@ -59,7 +62,7 @@ public class PostServlet extends HttpServlet {
             RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
             rq.forward(request, response);
         }
-        String savePath = "/PostImages/" + fileName;
+        String savePath = saveReal + "/PostImages/" + fileName;
 //        System.out.println(fileName);
 //        String savePath = "/PostImages" + File.separator + fileName;
         System.out.println("Working Directory = " +System.getProperty("user.dir"));

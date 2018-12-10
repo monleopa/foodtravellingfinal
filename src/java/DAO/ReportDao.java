@@ -43,7 +43,7 @@ public class ReportDao {
     
     public ArrayList<Report> getListReport() throws SQLException{
         Connection con = JDBCConnection.getJDBCConnection();
-        String sql = "SELECT * FROM report";
+        String sql = "SELECT * FROM report, user WHERE report.user_id = user.user_id";
         PreparedStatement ps = con.prepareCall(sql);
         ResultSet rs = ps.executeQuery();
         ArrayList<Report> list = new ArrayList<>();
@@ -52,7 +52,7 @@ public class ReportDao {
             report.setReportID(rs.getLong("report_id"));
             report.setReportContent(rs.getString("report_content"));
             report.setUserID(rs.getLong("user_id"));
-            report.setUserName(rs.getString("user_name"));
+            report.setUserName(rs.getString("user.user_name"));
             report.setPostID(rs.getLong("post_id"));
             report.setReportStatus(rs.getLong("report_status"));
             list.add(report);

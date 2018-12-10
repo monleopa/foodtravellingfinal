@@ -20,6 +20,7 @@
             User user = new User();
             if(session.getAttribute("user") != null) {
             user = (User) session.getAttribute("user");
+            String ttcnUrl = "ttcn.jsp?userID=" + user.getUserID();
             User user2 = new User();
             String postUserId = request.getParameter("userID");
             user2 = UserDao.getUser(postUserId);
@@ -44,7 +45,11 @@
                             <button class="btn-follow" value="0" onclick="return follow(<%= user2.getUserID() %>)" id="btnFollow">Follow</button>
                         <%} else { %> 
                             <button class="btn-follow" value="1" onclick="return follow(<%= user2.getUserID() %>)" id="btnFollow">Unfollow</button>
-                        <% } } %>
+                        <% } } else { %>
+                     
+                        <a href="<%=ttcnUrl%>"><button class="btn-follow">Edit Infor</button></a>
+                        
+                <% } %>
             </div>
             <div class="fix-follow"></div>
         </div>
@@ -80,8 +85,8 @@
             document.getElementById(btnFollow).innerHTML = "Unfollow";
             document.getElementById(btnFollow).value = 1;
             var http = new XMLHttpRequest();
-  //          http.open("POST", "http://localhost:8080/TravellingFood/follow.jsp", true);
-            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/follow.jsp", true);
+            http.open("POST", "http://localhost:8080/TravellingFood/follow.jsp", true);
+   //         http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/follow.jsp", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             var params = "param2=" + a;
             http.send(params);
@@ -93,8 +98,8 @@
             document.getElementById(btnFollow).innerHTML = "Follow";
             document.getElementById(btnFollow).value = 0;
             var http = new XMLHttpRequest();
- //           http.open("POST", "http://localhost:8080/TravellingFood/unfollow.jsp", true);
-            http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/unfollow.jsp", true);
+            http.open("POST", "http://localhost:8080/TravellingFood/unfollow.jsp", true);
+ //           http.open("POST", "http://node194332-travellingfood.jelastic.servint.net/unfollow.jsp", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             var params = "param2=" + a;
             http.send(params);
