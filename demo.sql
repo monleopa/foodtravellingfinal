@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2018 lúc 02:15 AM
+-- Thời gian đã tạo: Th1 01, 2019 lúc 05:54 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.10
 
@@ -33,18 +33,6 @@ CREATE TABLE `category` (
   `category_name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `category`
---
-
-INSERT INTO `category` (`category_id`, `category_name`) VALUES
-(1, 'name1'),
-(2, 'name1'),
-(3, 'name1'),
-(4, 'name2'),
-(5, 'name3'),
-(6, 'name4');
-
 -- --------------------------------------------------------
 
 --
@@ -55,23 +43,21 @@ CREATE TABLE `comment` (
   `comment_id` int(50) NOT NULL,
   `comment_content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `comment_post_id` int(50) NOT NULL,
-  `comment_user_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `comment_user_name` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `comment_user_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `comment_content`, `comment_post_id`, `comment_user_id`, `comment_user_name`) VALUES
-(1, 'hello', 23, '1', 'ducanh'),
-(2, 'hm', 23, '1', 'ducanh'),
-(3, 'helllo hihi', 23, '1', 'ducanh'),
-(6, 'Dep qua nhi', 33, '1', 'ducanh'),
-(7, 'Hihi', 33, '31', 'hongnhung'),
-(8, 'ngon khong ?', 32, '1', 'ducanh'),
-(9, 'đẹp nha', 33, '0', 'hailinh'),
-(10, 'TrÃªn trá»?i cÃ³ Ä?Ã¡m mÃ¢y xanh á»? giá»¯a mÃ¢y tráº¯ng, chung quanh mÃ¢y vÃ ng Æ¯á»?c gÃ¬ anh láº¥y Ä?Æ°á»£c nÃ ng Ä?á»? anh mua gáº¡ch BÃ¡t TrÃ ng vá»? xÃ¢y XÃ¢y dá»?c rá»?i láº¡i xÃ¢y ngang XÃ¢y há»? bÃ¡n nguyá»?t cho nÃ ng rá»­a chÃ¢n', 33, '1', 'ducanh');
+INSERT INTO `comment` (`comment_id`, `comment_content`, `comment_post_id`, `comment_user_id`) VALUES
+(1, 'hello', 23, '1'),
+(2, 'hm', 23, '1'),
+(3, 'helllo hihi', 23, '1'),
+(8, 'ngon khong ?', 32, '1'),
+(17, 'Không gian đẹp, buổi tối lung linh. Đồ ăn ngon. Nếu thích có thể chèo thuyền ra sông thả đèn hoa đăng rất thú vị. Một nơi để chụp hình sống ảo rất tốt :)))', 33, '1'),
+(27, 'văn thơ lai láng quá anh ơi', 33, '31'),
+(30, 'đẹp quá chị ơi, cho em đi theo với :v', 33, '3');
 
 -- --------------------------------------------------------
 
@@ -96,7 +82,6 @@ INSERT INTO `liked` (`user_id`, `post_id`) VALUES
 (1, 33),
 (1, 34),
 (1, 35),
-(1, 58),
 (2, 23),
 (2, 24),
 (2, 26),
@@ -128,24 +113,21 @@ CREATE TABLE `post` (
   `post_content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `post_image` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_category` int(5) NOT NULL,
-  `user_id` int(50) NOT NULL,
-  `user_name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL
+  `user_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `post`
 --
 
-INSERT INTO `post` (`post_id`, `post_name`, `post_location`, `post_filename`, `post_content`, `post_image`, `post_category`, `user_id`, `user_name`) VALUES
-(23, 'Phở Bò', 'Nam Định', 'recipe3315-635754951948774481.jpg', 'Rất ngon nhé !!!', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\recipe3315-635754951948774481.jpg', 1, 1, 'ducanh'),
-(24, 'Bánh Cuốn', 'Số 1 - Quang Trung - Hà Nội', '127_cr_5100540b7e113.jpg', 'Bánh rất ngon, giá lại hạ giẻ. Ăn nóng hổi.', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\127_cr_5100540b7e113.jpg', 1, 2, 'baphuong'),
-(29, 'Bai bien Hai Tien', 'Sam Son', 'download.jpg', 'Beautifull', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\download.jpg', 2, 30, 'duonglinhtrang'),
-(30, 'Vinpearl land', 'Nha Trang', 'vinpearl-land-nha-trang-ticket-4-pm.jpg', 'Lien he 0971366898 de co duoc khach san dep va giai hop ly nhat.', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\vinpearl-land-nha-trang-ticket-4-pm.jpg', 2, 2, 'baphuong'),
-(31, 'Tam Dao', 'Vinh Phuc', 'du-lich-tam-dao-4-400x400.jpg', 'So Beautifull !', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\du-lich-tam-dao-4-400x400.jpg', 2, 29, 'philinhlinh'),
-(32, 'Banh Xeo', '91 Be Van Dan - Ha Dong - Ha Noi', 'photo.jpg', 'Very Good !!!', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\photo.jpg', 1, 31, 'hongnhung'),
-(33, 'Hội An', 'Phố cổ Hội An - Quảng Nam', 'hoi-an-600x600.jpg', 'So So So Beautifull !', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\hoi-an-600x600.jpg', 2, 31, 'hongnhung'),
-(58, '', '', 'aaa.png', '', 'C:\\Users\\User\\Downloads\\DemoWeb\\build\\web\\PostImages\\?âs.png', 1, 31, 'hongnhung'),
-(59, 'Bánh Mỳ Pew Pew', 'Út Tịch - Tp Hồ Chí Minh', '20-4-480x360.jpg', 'Rất là ngon !!!', 'C:\\Users\\User\\Downloads\\DemoWeb\\build\\web\\PostImages\\20-4-480x360.jpg', 1, 1, 'duc anh');
+INSERT INTO `post` (`post_id`, `post_name`, `post_location`, `post_filename`, `post_content`, `post_image`, `post_category`, `user_id`) VALUES
+(23, 'Phở Bò', 'Nam Định', 'recipe3315-635754951948774481.jpg', 'Rất ngon nhé !!!', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\recipe3315-635754951948774481.jpg', 1, 1),
+(24, 'Bánh Cuốn', 'Số 1 - Quang Trung - Hà Nội', '127_cr_5100540b7e113.jpg', 'Bánh rất ngon, giá lại hạ giẻ. Ăn nóng hổi.', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\127_cr_5100540b7e113.jpg', 1, 2),
+(29, 'Bai bien Hai Tien', 'Sam Son', 'download.jpg', 'Beautifull', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\download.jpg', 2, 30),
+(30, 'Vinpearl land', 'Nha Trang', 'vinpearl-land-nha-trang-ticket-4-pm.jpg', 'Lien he 0971366898 de co duoc khach san dep va giai hop ly nhat.', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\vinpearl-land-nha-trang-ticket-4-pm.jpg', 2, 2),
+(31, 'Tam Dao', 'Vinh Phuc', 'du-lich-tam-dao-4-400x400.jpg', 'So Beautifull !', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\du-lich-tam-dao-4-400x400.jpg', 2, 29),
+(32, 'Bánh Xèo', '91 Be Van Dan - Ha Dong - Ha Noi', 'photo.jpg', 'Very Good !!!', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\photo.jpg', 1, 31),
+(33, 'Hội An', 'Phố cổ Hội An - Quảng Nam', 'hoi-an-600x600.jpg', 'So So So Beautifull !', 'C:\\Users\\User\\Documents\\NetBeansProjects\\Example\\web\\PostImages\\hoi-an-600x600.jpg', 1, 31);
 
 -- --------------------------------------------------------
 
@@ -164,10 +146,21 @@ CREATE TABLE `relationship` (
 --
 
 INSERT INTO `relationship` (`rela_id`, `follower_id`, `following_id`) VALUES
-(12, 1, 31),
-(13, 1, 29),
+(13, 29, 29),
 (14, 1, 2),
-(15, 2, 1);
+(15, 1, 1),
+(17, 30, 30),
+(18, 31, 1),
+(19, 2, 2),
+(21, 2, 31),
+(22, 3, 3),
+(24, 31, 2),
+(25, 47, 47),
+(26, 47, 31),
+(27, 1, 29),
+(28, 3, 31),
+(31, 1, 31),
+(32, 48, 48);
 
 -- --------------------------------------------------------
 
@@ -189,8 +182,8 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`report_id`, `report_content`, `user_id`, `user_name`, `post_id`, `report_status`) VALUES
-(1, 'xida ma', 1, 'duc anh', 33, 0),
-(3, 'ád', 1, 'duc anh', 32, 0);
+(13, 'khong ngon', 31, 'hongnhung', 24, 0),
+(14, 'k hay', 2, 'Nguyễn Bá Phương', 33, 0);
 
 -- --------------------------------------------------------
 
@@ -211,17 +204,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_password`, `email`, `admin`) VALUES
-(1, 'duc anh', '81dc9bdb52d04dc20036dbd8313ed055', 'ducanh7897@gmail.com', 1),
-(2, 'baphuong', '81dc9bdb52d04dc20036dbd8313ed055', 'baphuong@gmail.com', 2),
+(1, 'Đức Anh', '81dc9bdb52d04dc20036dbd8313ed055', 'ducanh7897@gmail.com', 1),
+(2, 'Nguyễn Bá Phương', '81dc9bdb52d04dc20036dbd8313ed055', 'baphuong@gmail.com', 2),
 (3, 'Cong Son', '81dc9bdb52d04dc20036dbd8313ed055', 'congson@gmail.com', 2),
 (29, 'philinhlinh', '81dc9bdb52d04dc20036dbd8313ed055', 'philinh@gmail.com', 2),
 (30, 'duonglinhtrang', '81dc9bdb52d04dc20036dbd8313ed055', 'tranglinh@gmail.com', 2),
-(31, 'hongnhung', '81dc9bdb52d04dc20036dbd8313ed055', 'hongnhung@gmail.com', 2),
-(32, 'handaik97', '0be27b6bc72d6924bfa29a44e38c1035', 'handaik97@gmail.com', 2),
-(33, 'toilahan97', '552114b824ac808236e41ee6a078267a', 'toilahan97@gmail.com', 2),
-(34, 'hailinh', 'e2fc714c4727ee9395f324cd2e7f331f', 'hailinh@gmail.com', 2),
-(35, 'phamhieu', '09d674562084500494ec3d746204a875', 'phamhieu@gmail.com', 2),
-(36, 'quocduy', '81dc9bdb52d04dc20036dbd8313ed055', 'quocduy@gmail.com', 2);
+(31, 'Hồng Nhung', '81dc9bdb52d04dc20036dbd8313ed055', 'hongnhung@gmail.com', 2),
+(47, 'tan dung', '81dc9bdb52d04dc20036dbd8313ed055', 'tandung@gmail.com', 2),
+(48, 'Đức', '81dc9bdb52d04dc20036dbd8313ed055', 'tony@gmail.com', 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -277,31 +267,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `comment_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `post_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT cho bảng `relationship`
 --
 ALTER TABLE `relationship`
-  MODIFY `rela_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `rela_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `user_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
