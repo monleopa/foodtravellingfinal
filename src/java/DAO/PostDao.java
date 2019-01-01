@@ -29,6 +29,7 @@ public class PostDao {
                 + " values(?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
+            System.out.println("haha");
             ps = con.prepareStatement(sql);
             ps.setString(1, post.getPostName());
             ps.setString(2, post.getPostLocation());
@@ -37,7 +38,6 @@ public class PostDao {
             ps.setString(5, post.getPostImage());
             ps.setLong(6, post.getPostCategory());
             ps.setLong(7, post.getPostUserId());
-            ps.setString(8, post.getPostUserName());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
